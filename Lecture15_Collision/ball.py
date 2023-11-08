@@ -9,6 +9,7 @@ class Ball:
         if Ball.image == None:
             Ball.image = load_image('ball21x21.png')
         self.x, self.y, self.velocity = x, y, velocity
+        self.player_ball = False
 
     def draw(self):
         self.image.draw(self.x, self.y)
@@ -26,4 +27,6 @@ class Ball:
 
     def handle_collision(self, group, other):
         if group == 'boy:ball':
+            game_world.remove_object(self)
+        if group == 'ball:zombie':
             game_world.remove_object(self)
